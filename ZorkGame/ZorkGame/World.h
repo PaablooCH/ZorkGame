@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <vector>
 #include "Entity.h"
 #include "Player.h"
@@ -11,7 +12,9 @@ public:
 	World();
 	~World();
 	bool Update(const vector<string>& actions);
+	bool gameOver;
 private:
+	bool isADirection(const string& direction);
 	vector<Entity*> entities;
 	Player* player;
 };

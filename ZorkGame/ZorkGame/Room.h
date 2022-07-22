@@ -3,5 +3,8 @@
 class Room :
     public Entity
 {
+public:
+    Room();
+    void Examine();
 };
 
