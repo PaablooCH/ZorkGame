@@ -7,14 +7,15 @@ using namespace std;
 
 enum EntityType
 {
-	roomExit,
-	room,
-	item,
-	creature
+	EXIT,
+	ROOM,
+	ITEM,
+	CREATURE
 };
 class Entity
 {
 public:
+	Entity(const string& name, const string& description, Entity* parent);
 	Entity(const string& name, const string& description);
 	~Entity();
 
@@ -23,5 +24,7 @@ public:
 	string description;
 
 	list<Entity*> contains;
+
+	Entity* parent; //Right now, only items has parents
 };
 

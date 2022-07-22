@@ -4,7 +4,7 @@ World::World()
 {
 	Room* jail = new Room();
 	// Player
-	player = new Player(20, 2, 0, jail);
+	player = new Player(20, 0, jail);
 }
 
 World::~World()
@@ -22,6 +22,10 @@ bool World::Update(const vector<string>& actions)
 		}
 		else if (actions[0] == "examine" || actions[0] == "e") {
 			player->Examine();
+			return true;
+		}
+		else if (actions[0] == "heal" || actions[0] == "h") {
+			player->Heal();
 			return true;
 		}
 		else if (actions[0] == "inventory" || actions[0] == "i") {
@@ -64,7 +68,7 @@ bool World::Update(const vector<string>& actions)
 		else if (actions[0] == "equip" || actions[0] == "eq") {
 			player->Equip(actions[1]);
 		}
-		else if (actions[0], "examine" || actions[0] == "ex") {
+		else if (actions[0] == "examine" || actions[0] == "ex") {
 			player->Examine(actions[1]);
 		}
 		else if (actions[0] == "attack" || actions[0] == "at") {
@@ -97,3 +101,5 @@ bool World::isADirection(const string& direction)
 	}
 	return false;
 }
+
+

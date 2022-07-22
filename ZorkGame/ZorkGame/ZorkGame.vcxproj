@@ -131,7 +131,7 @@
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Exit.cpp" />
     <ClCompile Include="Item.cpp" />
-    <ClCompile Include="NPC.cpp" />
+    <ClCompile Include="npc.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="World.cpp" />
@@ -142,7 +142,7 @@
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Exit.h" />
     <ClInclude Include="Item.h" />
-    <ClInclude Include="NPC.h" />
+    <ClInclude Include="npc.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="World.h" />

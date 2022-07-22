@@ -6,7 +6,7 @@ class Player :
     public Creature
 {
 public:
-    Player(int maxHealth, int attack, int defend, Room* location);
+    Player(int maxHealth, int defend, Room* location);
 	void Look();
 	void Look(string action);
 	void Move(string action);
@@ -18,11 +18,11 @@ public:
 	void Examine();
 	void Examine(string action);
 	void Inventory();
+	void Heal();
 	void Stats();
 
     int maxHealth;
-	int attack;
-	int defend;
+	int defense;
 
 	list<Item*> inventory;
 };

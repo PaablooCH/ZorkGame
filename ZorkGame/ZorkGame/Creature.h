@@ -6,8 +6,14 @@ class Creature :
     public Entity
 {
 public:
-    Creature();
+    Creature(int health, int attack);
+    void GetHit(int damage);
+    Item* Loot();
+
     Room* location;
     int health;
+    int attack;
+    bool isDead;
+    Item* loot;
 };
 

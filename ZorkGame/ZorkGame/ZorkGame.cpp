@@ -46,6 +46,8 @@ int main()
 		actions = getActions(player_input);
 
 		if (!world.Update(actions)) cout << "Sorry, I'm a little deaf. Can you repeat?" << endl;
+
+		if (world.gameOver) exit;
 	}
 	cout << "Thanks for playing :)" << endl;
 }
