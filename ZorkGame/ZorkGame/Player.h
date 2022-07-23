@@ -1,12 +1,11 @@
 #pragma once
 #include "Creature.h"
-#include "Item.h"
 
 class Player :
     public Creature
 {
 public:
-    Player(int maxHealth, int defend, Room* location);
+    Player(int maxHealth, int defend);
 	void Look();
 	void Look(string action);
 	void Move(string action);

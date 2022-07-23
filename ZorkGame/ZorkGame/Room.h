@@ -4,6 +4,8 @@
 #include "Item.h"
 #include "Creature.h"
 
+class Creature;
+
 class Room :
     public Entity
 {

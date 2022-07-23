@@ -1,12 +1,13 @@
 #include "Creature.h"
 
-Creature::Creature(int health, int attack) :
+Creature::Creature(int health, int attack, Room* location) :
 	Entity(name, description)
 {
 	this->health = health;
 	this->attack = attack;
 	this->isDead = false;
 	this->loot = nullptr;
+	this->location = location;
 }
 
 void Creature::GetHit(int damage)

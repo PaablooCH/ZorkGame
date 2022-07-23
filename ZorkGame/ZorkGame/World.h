@@ -3,6 +3,7 @@
 #include <vector>
 #include "Entity.h"
 #include "Player.h"
+#include "Creature.h"
 
 using namespace std;
 

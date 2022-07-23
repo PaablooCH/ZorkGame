@@ -1,7 +1,7 @@
 #include "Player.h"
 
-Player::Player(int maxHealth, int defend, Room* location) :
-	Creature(health, attack)
+Player::Player(int maxHealth, int defend) :
+	Creature(health, attack, location)
 {
 	this->maxHealth = maxHealth;
 	this->health = maxHealth;

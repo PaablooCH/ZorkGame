@@ -2,9 +2,10 @@
 
 World::World()
 {
+	gameOver = false;
 	Room* jail = new Room();
 	// Player
-	player = new Player(20, 0, jail);
+	player = new Player(20, 0);
 }
 
 World::~World()

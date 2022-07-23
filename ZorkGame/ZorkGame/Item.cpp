@@ -8,3 +8,7 @@ Item::Item(const string& name, const string& description, ItemType itemType, Ent
 	this->itemType = itemType;
 	this->parent = parent;
 }
+
+Item::~Item()
+{
+}

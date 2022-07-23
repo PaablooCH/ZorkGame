@@ -47,7 +47,7 @@ int main()
 
 		if (!world.Update(actions)) cout << "Sorry, I'm a little deaf. Can you repeat?" << endl;
 
-		if (world.gameOver) exit;
+		if (world.gameOver) break;
 	}
 	cout << "Thanks for playing :)" << endl;
 }
