@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
+#include <list>
 #include "Entity.h"
 #include "Player.h"
 #include "Creature.h"
@@ -16,7 +17,7 @@ public:
 	bool gameOver;
 private:
 	bool isADirection(const string& direction);
-	vector<Entity*> entities;
+	list<Entity*> entities;
 	Player* player;
 };
 

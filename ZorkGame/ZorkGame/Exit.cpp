@@ -51,7 +51,7 @@ string Exit::TranslateDirection(const string& direction)
 	if (direction == "south" || direction == "s") {
 		return "south";
 	}
-	if (direction == "east" || direction == "e") {
+	else {
 		return "east";
 	}
 }

@@ -1,10 +1,8 @@
 #include "Room.h"
 
-Room::Room() :
+Room::Room(string name, string description) :
 	Entity(name, description)
 {
-	this->name = name;
-	this->description = description;
 }
 
 void Room::Examine()
@@ -15,12 +13,27 @@ void Room::Examine()
 	}
 	cout << "This room contains:" << endl;
 	for (list<Entity*>::iterator it = contains.begin(); it != contains.end(); it++) {
-		cout << "	" << (*it)->name << endl;
+		cout << "	" << (*it)->GetName() << endl;
 	}
 
 }
 
-void Room::Look(string direction)
+bool Room::Examine(const string& object)
+{
+	Item* item = FindItem(object);
+	if (item != nullptr) {
+		cout << item->GetName() << " " << item->GetDescription() << endl;
+		if (item->GetType() == CREATURE) {
+			Creature* creature = ((Creature*) item);
+			cout << "  Health: " << creature->GetHealth() << endl;
+			cout << "  Attack: " << creature->GetAttack() << endl;
+		}
+		return true;
+	}
+	return false;
+}
+
+void Room::Look(const string& direction)
 {
 	Exit* exit = FindExit(direction);
 	if (exit != nullptr) {
@@ -29,17 +42,17 @@ void Room::Look(string direction)
 	
 }
 
-Exit* Room::FindExit(string direction)
+Exit* Room::FindExit(const string& direction)
 {
 	for (list<Entity*>::iterator it = contains.begin(); it != contains.end(); it++) {
-		if ((*it)->type == EXIT) {
+		if ((*it)->GetType() == EXIT) {
 			Exit* exit = (Exit*) *it;
 		}
 	}
 	return nullptr;
 }
 
-Room* Room::Move(string direction)
+Room* Room::Move(const string& direction)
 {
 	Exit* exit = FindExit(direction);
 	if (exit != nullptr) {
@@ -48,7 +61,7 @@ Room* Room::Move(string direction)
 	return nullptr;
 }
 
-Item* Room::Take(string object)
+Item* Room::Take(const string& object)
 {
 	Item* item = FindItem(object);
 	if (item != nullptr) {
@@ -57,7 +70,7 @@ Item* Room::Take(string object)
 	return item;
 }
 
-Item* Room::Loot(string target)
+Item* Room::Loot(const string& target)
 {
 	Creature* creature = FindCreature(target);
 	if (creature != nullptr) {
@@ -66,28 +79,28 @@ Item* Room::Loot(string target)
 	return nullptr;
 }
 
-void Room::Attack(string target, int damage)
+void Room::Attack(const string& target, const int& damage)
 {
 	Creature* creature = FindCreature(target);
 	if (creature != nullptr) {
-		creature->GetHit(damage);
+		creature->Damaged(damage);
 	}
 }
 
-Item* Room::FindItem(string object)
+Item* Room::FindItem(const string& object)
 {
 	for (list<Entity*>::iterator it = contains.begin(); it != contains.end(); it++) {
-		if ((*it)->type == ITEM && (*it)->name == object) {
+		if ((*it)->GetType() == ITEM && (*it)->GetName() == object) {
 			return (Item*)*it;
 		}
 	}
 	return nullptr;
 }
 
-Creature* Room::FindCreature(string target)
+Creature* Room::FindCreature(const string& target)
 {
 	for (list<Entity*>::iterator it = contains.begin(); it != contains.end(); it++) {
-		if ((*it)->type == CREATURE && (*it)->name == target) {
+		if ((*it)->GetType() == CREATURE && (*it)->GetName() == target) {
 			return (Creature*)(*it);
 		}
 	}

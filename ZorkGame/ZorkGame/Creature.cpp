@@ -1,6 +1,6 @@
 #include "Creature.h"
 
-Creature::Creature(int health, int attack, Room* location) :
+Creature::Creature(string name, string description, int health, int attack, Room* location) :
 	Entity(name, description)
 {
 	this->health = health;
@@ -10,7 +10,7 @@ Creature::Creature(int health, int attack, Room* location) :
 	this->location = location;
 }
 
-void Creature::GetHit(int damage)
+void Creature::Damaged(int damage)
 {
 	health -= damage;
 	cout << "You deal " << damage << " to " << name << "." << endl;
@@ -33,4 +33,14 @@ Item* Creature::Loot()
 	}
 	cout << name << " does not have loot." << endl;
 	return nullptr;
+}
+
+int Creature::GetHealth()
+{
+	return health;
+}
+
+int Creature::GetAttack()
+{
+	return attack;
 }

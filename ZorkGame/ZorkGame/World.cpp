@@ -3,13 +3,17 @@
 World::World()
 {
 	gameOver = false;
-	Room* jail = new Room();
+	Room* jail = new Room("", "");
 	// Player
-	player = new Player(20, 0);
+	player = new Player("", "", 20, 2, 0, jail);
 }
 
 World::~World()
 {
+	for (list<Entity*>::iterator it = entities.begin(); it != entities.end(); ++it)
+		delete* it;
+
+	entities.clear();
 }
 
 bool World::Update(const vector<string>& actions)
@@ -77,6 +81,13 @@ bool World::Update(const vector<string>& actions)
 		}
 		else if (actions[0] == "loot" || actions[0] == "lt") {
 			player->Loot(actions[1]);
+		}
+		break;
+	}
+	case 3:
+	{
+		if (actions[0] == "combine" || actions[0] == "c") {
+			player->Combine(actions[1], actions[2]);
 		}
 		break;
 	}
