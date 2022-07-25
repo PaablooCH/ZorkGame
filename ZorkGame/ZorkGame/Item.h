@@ -7,7 +7,8 @@ enum ItemType
 	WEAPON,
 	ARMOUR,
 	HEAL,
-	UPGRADE
+	UPGRADE,
+	WIN
 };
 
 class Item :

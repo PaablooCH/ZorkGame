@@ -13,7 +13,7 @@ public:
 	void Drop(string object);
 	bool Attack(string target);
 	void Equip(string object);
-	void Loot(string target);
+	bool Loot(string target);
 	void Talk(string npc);
 	void Examine();
 	void Examine(string object);

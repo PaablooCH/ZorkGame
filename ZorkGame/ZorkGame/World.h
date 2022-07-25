@@ -15,6 +15,7 @@ public:
 	~World();
 	bool Update(const vector<string>& actions);
 	bool gameOver;
+	bool win;
 private:
 	bool isADirection(const string& direction);
 	list<Entity*> entities;

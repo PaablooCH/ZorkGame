@@ -33,6 +33,7 @@ int main()
 
 	cout << "Welcome to MyZork!" << endl;
 	cout << "----------------\n";
+	cout << "You have awakened in a remote prison." << endl;
 
 	World world;
 
@@ -45,7 +46,8 @@ int main()
 
 		if (!world.Update(actions)) cout << "Sorry, I'm a little deaf. Can you repeat?" << endl;
 
-		if (world.gameOver) break;
+		if (world.gameOver || world.win) break;
 	}
+	if (world.win) cout << "Congratulation you have complete the challenge" << endl;
 	cout << "Thanks for playing :)" << endl;
 }

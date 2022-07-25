@@ -114,13 +114,17 @@ void Player::Equip(string object)
 	//Ir al inventario y summar los stats
 }
 
-void Player::Loot(string target)
+bool Player::Loot(string target)
 {
 	Item* loot = location->Loot(target);
 	if (loot != nullptr) {
 		inventory.push_back(loot);
 		cout << "You have obtained " << loot->GetName() << "." << endl;
+		if (loot->GetItemType() == WIN) {
+			return true;
+		}
 	}
+	return false;
 	//Ir a la room y buscar el cadaver del enemigo
 }
 

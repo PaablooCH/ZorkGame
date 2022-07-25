@@ -71,9 +71,13 @@ World::World()
 	Item* shield = new Item("Shield", "An old wooden shield.", 3, ARMOUR, ITEM);
 	armory->InsertEntity(shield);
 
+	Item* medal = new Item("Medal", "You win.", WIN, ITEM);
+	finalBoss->SetLoot(medal);
+
 	// Player
 	player = new Player("Hero", "You are an awesome adventurer!", 25, 3, 0, jail, CREATURE, PLAYER);
 	gameOver = false;
+	win = false;
 	cout << jail->GetName() << " " << jail->GetDescription() << endl;
 }
 
@@ -158,7 +162,9 @@ bool World::Update(const vector<string>& actions)
 			return true;
 		}
 		else if (actions[0] == "loot" || actions[0] == "lt") {
-			player->Loot(actions[1]);
+			if (player->Loot(actions[1])) {
+				win = true;
+			}
 			return true;
 		}
 		break;
