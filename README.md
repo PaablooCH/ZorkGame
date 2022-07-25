@@ -36,7 +36,7 @@ The game consists of 6 rooms in the following disposition (| or - are the exits 
 
 X T-G
 X | X
-- M A
+|-M A
 | | X
 J G X
 
