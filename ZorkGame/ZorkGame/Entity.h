@@ -15,7 +15,7 @@ enum EntityType
 class Entity
 {
 public:
-	Entity(const string& name, const string& description);
+	Entity(const string& name, const string& description, EntityType entitytype);
 	~Entity();
 	string GetName();
 	EntityType GetType();

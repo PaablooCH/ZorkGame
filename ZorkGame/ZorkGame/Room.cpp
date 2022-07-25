@@ -1,7 +1,8 @@
 #include "Room.h"
+#include "npc.h"
 
-Room::Room(string name, string description) :
-	Entity(name, description)
+Room::Room(string name, string description, EntityType type) :
+	Entity(name, description, type)
 {
 }
 
@@ -20,13 +21,17 @@ void Room::Examine()
 
 bool Room::Examine(const string& object)
 {
-	Item* item = FindItem(object);
-	if (item != nullptr) {
-		cout << item->GetName() << " " << item->GetDescription() << endl;
-		if (item->GetType() == CREATURE) {
-			Creature* creature = ((Creature*) item);
+	Entity* entity = FindEntity(object);
+	if (entity != nullptr) {
+		cout << entity->GetName() << " " << entity->GetDescription() << endl;
+		if (entity->GetType() == CREATURE) {
+			Creature* creature = ((Creature*) entity);
 			cout << "  Health: " << creature->GetHealth() << endl;
 			cout << "  Attack: " << creature->GetAttack() << endl;
+			if (creature->isDead()) {
+				Item* item = creature->GetLoot();
+				cout << "  Have: " << item->GetName() << " " << item->GetDescription() << endl;
+			}
 		}
 		return true;
 	}
@@ -37,7 +42,7 @@ void Room::Look(const string& direction)
 {
 	Exit* exit = FindExit(direction);
 	if (exit != nullptr) {
-		exit->ExistExit(this, direction);
+		exit->LookExit(this, direction);
 	}
 	
 }
@@ -45,8 +50,11 @@ void Room::Look(const string& direction)
 Exit* Room::FindExit(const string& direction)
 {
 	for (list<Entity*>::iterator it = contains.begin(); it != contains.end(); it++) {
-		if ((*it)->GetType() == EXIT) {
-			Exit* exit = (Exit*) *it;
+		if ((*it)->GetType() == EXIT) { //pilla la primera salida
+			Exit* exit = ((Exit*)(*it));
+			if (exit->ExistExit(this, direction)) {
+				return ((Exit*)(*it));
+			}
 		}
 	}
 	return nullptr;
@@ -79,6 +87,15 @@ Item* Room::Loot(const string& target)
 	return nullptr;
 }
 
+void Room::Talk(const string& npc)
+{
+	Creature* creature = FindCreature(npc);
+	if (creature != nullptr && creature->GetCreatureType() == NPC) {
+		Npc* npc = (Npc*) (creature);
+		npc->Talk();
+	}
+}
+
 void Room::Attack(const string& target, const int& damage)
 {
 	Creature* creature = FindCreature(target);
@@ -102,6 +119,17 @@ Creature* Room::FindCreature(const string& target)
 	for (list<Entity*>::iterator it = contains.begin(); it != contains.end(); it++) {
 		if ((*it)->GetType() == CREATURE && (*it)->GetName() == target) {
 			return (Creature*)(*it);
+		}
+	}
+	cout << target << " is not in this room." << endl;
+	return nullptr;
+}
+
+Entity* Room::FindEntity(const string& target)
+{
+	for (list<Entity*>::iterator it = contains.begin(); it != contains.end(); it++) {
+		if ((*it)->GetName() == target) {
+			return (*it);
 		}
 	}
 	cout << target << " is not in this room." << endl;

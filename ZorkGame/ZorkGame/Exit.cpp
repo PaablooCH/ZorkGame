@@ -1,20 +1,21 @@
 #include "Exit.h"
 
-Exit::Exit(const string& sourceDirection, const string& destinationDirection, Room* source, Room* destination, bool locked) :
-	Entity(name, description)
+Exit::Exit(const string& name, const string& description, const string& sourceDirection, const string& destinationDirection, Room* source, Room* destination, EntityType type) :
+	Entity(name, description, type)
 {
 	this->sourceDirection = sourceDirection;
 	this->destinationDirection = destinationDirection;
 	this->source = source;
 	this->destination = destination;
-	this->locked = locked;
+	this->locked = false;
+	this->key = nullptr;
 }
 
 Exit::~Exit()
 {
 }
 
-void Exit::ExistExit(Room* room, string direction)
+void Exit::LookExit(Room* room, string direction)
 {
 	direction = TranslateDirection(direction);
 	if ((room == source && direction == sourceDirection) || (room == destination && direction == destinationDirection)) {
@@ -26,6 +27,15 @@ void Exit::ExistExit(Room* room, string direction)
 	}
 }
 
+bool Exit::ExistExit(Room* room, string direction)
+{
+	direction = TranslateDirection(direction);
+	if ((room == source && direction == sourceDirection) || (room == destination && direction == destinationDirection)) {
+		return true;
+	}
+	return false;
+}
+
 Room* Exit::MoveNextRoom(Room* room)
 {
 	if (locked) {
@@ -35,9 +45,24 @@ Room* Exit::MoveNextRoom(Room* room)
 	if (source == room) {
 		return destination;
 	}
-	else {
+	else if (destination == room) {
 		return source;
 	}
+}
+
+bool Exit::Unlock(Item* key)
+{
+	if (this->key == key) {
+		locked = false;
+		return true;
+	}
+	return false;
+}
+
+void Exit::setKey(Item* key)
+{
+	this->key = key;
+	locked = true;
 }
 
 string Exit::TranslateDirection(const string& direction)

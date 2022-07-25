@@ -5,7 +5,7 @@ class Player :
     public Creature
 {
 public:
-    Player(string name, string description, int maxHealth, int attack, int defend, Room* location);
+    Player(string name, string description, int maxHealth, int attack, int defend, Room* location, EntityType type, CreatureType creatureType);
 	void Look();
 	void Look(string direction);
 	void Move(string direction);
@@ -14,6 +14,7 @@ public:
 	void Attack(string target);
 	void Equip(string object);
 	void Loot(string target);
+	void Talk(string npc);
 	void Examine();
 	void Examine(string object);
 	void Inventory();
@@ -23,7 +24,7 @@ public:
 
 private:
 	Item* FindItem(const string& object);
-
+	Room* location;
 	int maxHealth;
 	int defense;
 

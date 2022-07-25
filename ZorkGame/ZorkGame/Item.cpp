@@ -1,19 +1,21 @@
 #include "Item.h"
 
-Item::Item(const string& name, const string& description, ItemType itemType) :
-	Entity(name, description)
+Item::Item(const string& name, const string& description, ItemType itemType, EntityType type) :
+	Entity(name, description, type)
 {
 	this->itemType = itemType;
 	this->stats = 0;
 	this->itemToCombine = nullptr;
+	this->resultItem = nullptr;
 }
 
-Item::Item(const string& name, const string& description, int stats, ItemType itemType) :
-Entity(name, description)
+Item::Item(const string& name, const string& description, int stats, ItemType itemType, EntityType type) :
+Entity(name, description, type)
 {
 	this->itemType = itemType;
 	this->stats = stats;
 	this->itemToCombine = nullptr;
+	this->resultItem = nullptr;
 }
 
 Item::~Item()

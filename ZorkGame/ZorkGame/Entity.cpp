@@ -1,9 +1,10 @@
 #include "Entity.h"
 
-Entity::Entity(const string& name, const string& description)
+Entity::Entity(const string& name, const string& description, EntityType entitytype)
 {
 	this->name = name;
 	this->description = description;
+	this->type = entitytype;
 }
 
 Entity::~Entity()

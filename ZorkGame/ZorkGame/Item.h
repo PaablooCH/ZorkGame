@@ -6,16 +6,16 @@ enum ItemType
 	KEY,
 	WEAPON,
 	ARMOUR,
-	HEAL
+	HEAL,
+	CRAFT
 };
-
 
 class Item :
     public Entity
 {
 public:
-	Item(const string& name, const string& description, ItemType itemType);
-	Item(const string& name, const string& description, int stats, ItemType itemType);
+	Item(const string& name, const string& description, ItemType itemType, EntityType type);
+	Item(const string& name, const string& description, int stats, ItemType itemType, EntityType type);
 	~Item();
 	int GetStats();
 	ItemType GetItemType();

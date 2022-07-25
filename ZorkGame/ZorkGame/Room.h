@@ -10,20 +10,20 @@ class Room :
     public Entity
 {
 public:
-    Room(string name, string description);
+    Room(string name, string description, EntityType type);
     void Examine();
     bool Examine(const string& object);
     void Look(const string& direction);
     Room* Move(const string& direction);
     Item* Take(const string& object);
     Item* Loot(const string& target);
+    void Talk(const string& npc);
     void Attack(const string& target, const int& damage);
     
 private:
     Item* FindItem(const string& object);
     Exit* FindExit(const string& direction);
     Creature* FindCreature(const string& target);
-
-    list<Exit*> exits;
+    Entity* FindEntity(const string& target);
 };
 

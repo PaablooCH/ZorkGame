@@ -36,8 +36,6 @@ int main()
 
 	World world;
 
-	actions.push_back("look");
-
 	while (1)
 	{
 		cout << endl << ">";

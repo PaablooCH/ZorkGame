@@ -1,10 +1,11 @@
 #include "Player.h"
 
-Player::Player(string name, string description, int maxHealth, int attack, int defend, Room* location) :
-	Creature(name, description, maxHealth, attack, location)
+Player::Player(string name, string description, int maxHealth, int attack, int defend, Room* location, EntityType type, CreatureType creatureType) :
+	Creature(name, description, maxHealth, attack, type, creatureType)
 {
 	this->maxHealth = maxHealth;
 	this->defense = defend;
+	this->location = location;
 }
 
 void Player::Look()
@@ -22,8 +23,8 @@ void Player::Move(string direction)
 {
 	Room* newLocation = location->Move(direction);
 	if (newLocation != nullptr) {
-		cout << location->GetName() << " " << location->GetDescription() << endl;
 		location = newLocation;
+		cout << location->GetName() << " " << location->GetDescription() << endl;
 	}
 	else {
 		cout << "You can not move to that direction." << endl;
@@ -95,6 +96,11 @@ void Player::Loot(string target)
 		cout << "You have obtained " << loot->GetName() << "." << endl;
 	}
 	//Ir a la room y buscar el cadaver del enemigo
+}
+
+void Player::Talk(string npc)
+{
+	location->Talk(npc);
 }
 
 void Player::Examine()
