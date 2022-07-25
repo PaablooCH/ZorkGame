@@ -34,12 +34,13 @@ With 3 args
 ## Guide
 The game consists of 6 rooms in the following disposition (| or - are the exits ex.: J is conected by the north with M and M by the west with J):
 
-  T-G
-  |
+X T-G
+X | X
 - M A
-| |
-J G 
+| | X
+J G X
 
+(ignore X)
 
 * J - Jail: you can find a Corpse to Loot, you will obtain a bandage
 * M - Main Hall: you can find a creature KnightGroup, if you kill and loot them you will obtain a bandage
