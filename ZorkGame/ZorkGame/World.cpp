@@ -32,11 +32,13 @@ World::World()
 	// Creatures
 	Creature* knightGroup = new Creature("KnightGroup", "It's a group of knights, some of them look scared.", 7, 4, CREATURE, ENEMY);
 	Creature* corpse = new Creature("Corpse", "There is a human corpse leaning against the wall. Somebody has killed him.", 0, 0, CREATURE, ENEMY);
-	Creature* wizard = new Creature("Wizard", "Magic wizard protects the garden.", 8, 5, CREATURE, ENEMY);
+	Creature* wizard = new Creature("Wizard", "Magic wizard protects the garden.", 10, 5, CREATURE, ENEMY);
+	Creature* finalBoss = new Creature("GiantGoblin", "Magic wizard protects the garden.", 30, 10, CREATURE, ENEMY);
 
 	jail->InsertEntity(corpse);
 	mainHall->InsertEntity(knightGroup);
 	garden->InsertEntity(wizard);
+	goldenRoom->InsertEntity(finalBoss);
 
 	// NPC
 
@@ -70,7 +72,7 @@ World::World()
 	armory->InsertEntity(shield);
 
 	// Player
-	player = new Player("Hero", "You are an awesome adventurer!", 25, 3, 5, jail, CREATURE, PLAYER);
+	player = new Player("Hero", "You are an awesome adventurer!", 25, 3, 0, jail, CREATURE, PLAYER);
 	gameOver = false;
 	cout << jail->GetName() << " " << jail->GetDescription() << endl;
 }

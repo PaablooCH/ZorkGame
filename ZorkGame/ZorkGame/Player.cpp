@@ -74,10 +74,10 @@ bool Player::Attack(string target)
 		cout << " You have won the: " << creature->GetName() << endl;
 	}
 	else {
-		health = health + defense - creature->GetAttack();
-
-		cout << " You have dealt: " << attack << " of dmg" << endl;
-		cout << " You have received: " << creature->GetAttack() << " of dmg" << endl;
+		int damage = creature->GetAttack() - defense;
+		if (damage < 0) damage = 0;
+		health -= damage;
+		cout << " You have received " << damage << " of dmg" << endl;
 
 		if (health <= 0) {
 			cout << " You died. Game over." << endl;

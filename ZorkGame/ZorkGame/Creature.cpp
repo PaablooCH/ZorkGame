@@ -18,7 +18,7 @@ Creature::Creature(string name, string description, int health, int attack, Enti
 bool Creature::Damaged(int damage)
 {
 	health -= damage;
-	cout << "You deal " << damage << " to " << name << "." << endl;
+	cout << "You have dealt " << damage << " to " << name << "." << endl;
 	if (health <= 0) {
 		dead = true;
 		cout << name << " is dead." << endl;
