@@ -14,11 +14,11 @@ public:
     void Examine();
     bool Examine(const string& object);
     void Look(const string& direction);
-    Room* Move(const string& direction);
+    Exit* Move(const string& direction);
     Item* Take(const string& object);
     Item* Loot(const string& target);
     void Talk(const string& npc);
-    void Attack(const string& target, const int& damage);
+    Creature* Attack(const string& target);
     
 private:
     Item* FindItem(const string& object);

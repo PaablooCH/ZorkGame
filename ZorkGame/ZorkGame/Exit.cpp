@@ -21,7 +21,7 @@ void Exit::LookExit(Room* room, string direction)
 	if ((room == source && direction == sourceDirection) || (room == destination && direction == destinationDirection)) {
 		cout << "In the " << direction << " there is a " << name;
 		if (locked) {
-			cout << ", but its locked.";
+			cout << ", but its locked." << " To open it you need " << key->GetName() << ".";
 		}
 		cout << endl;
 	}
@@ -36,11 +36,13 @@ bool Exit::ExistExit(Room* room, string direction)
 	return false;
 }
 
-Room* Exit::MoveNextRoom(Room* room)
+Room* Exit::MoveNextRoom(Room* room, Item* key)
 {
 	if (locked) {
-		cout << "You can not pass. There is a closed door." << endl;
-		return nullptr;
+		if (!Unlock(key)) {
+			cout << "You can not pass. There is a closed door." << endl;
+			return nullptr;
+		}
 	}
 	if (source == room) {
 		return destination;
@@ -53,16 +55,22 @@ Room* Exit::MoveNextRoom(Room* room)
 bool Exit::Unlock(Item* key)
 {
 	if (this->key == key) {
+		cout << "You have unlocked " << name << "." << endl;
 		locked = false;
 		return true;
 	}
 	return false;
 }
 
-void Exit::setKey(Item* key)
+void Exit::SetKey(Item* key)
 {
 	this->key = key;
 	locked = true;
+}
+
+Item* Exit::GetKey()
+{
+	return key;
 }
 
 string Exit::TranslateDirection(const string& direction)

@@ -12,10 +12,10 @@ public:
     ~Exit();
     void LookExit(Room* room, string direction);
     bool ExistExit(Room* room, string direction);
-    Room* MoveNextRoom(Room* room);
+    Room* MoveNextRoom(Room* room, Item* key);
     bool Unlock(Item* key);
-    void setKey(Item* key);
-
+    void SetKey(Item* key);
+    Item* GetKey();
     
 private:
     string TranslateDirection(const string& direction);

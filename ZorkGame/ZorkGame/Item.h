@@ -7,7 +7,7 @@ enum ItemType
 	WEAPON,
 	ARMOUR,
 	HEAL,
-	CRAFT
+	UPGRADE
 };
 
 class Item :
@@ -19,14 +19,10 @@ public:
 	~Item();
 	int GetStats();
 	ItemType GetItemType();
-	void SetCombination(Item* itemToCombine, Item* resultItem);
-	bool CanCombine(Item* item);
-	Item* GetResult();
+	void addStats(int stat);
 
 private:
 	ItemType itemType;
 	int stats;
-	Item* itemToCombine;
-	Item* resultItem;
 };
 

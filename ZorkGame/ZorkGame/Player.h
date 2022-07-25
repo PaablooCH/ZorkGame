@@ -11,7 +11,7 @@ public:
 	void Move(string direction);
 	void Take(string object);
 	void Drop(string object);
-	void Attack(string target);
+	bool Attack(string target);
 	void Equip(string object);
 	void Loot(string target);
 	void Talk(string npc);

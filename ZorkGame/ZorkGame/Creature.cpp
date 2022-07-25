@@ -15,7 +15,7 @@ Creature::Creature(string name, string description, int health, int attack, Enti
 	this->creatureType = creatureType;
 }
 
-void Creature::Damaged(int damage)
+bool Creature::Damaged(int damage)
 {
 	health -= damage;
 	cout << "You deal " << damage << " to " << name << "." << endl;
@@ -23,6 +23,7 @@ void Creature::Damaged(int damage)
 		dead = true;
 		cout << name << " is dead." << endl;
 	}
+	return dead;
 }
 
 void Creature::SetLoot(Item* item)
@@ -39,6 +40,7 @@ Item* Creature::Loot()
 	else if (loot != nullptr) {
 		Item* item = loot;
 		loot = nullptr;
+		delete this;
 		return item;
 	}
 	cout << name << " does not have loot." << endl;

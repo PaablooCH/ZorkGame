@@ -40,7 +40,7 @@ World::World()
 
 	// NPC
 
-	Npc* npc = new Npc("GoldenKnight", "His golden armor its destroyed, you don't want to end up like him.", 1, 0, CREATURE, NPC);
+	Npc* npc = new Npc("Knight", "His golden armor its destroyed, you don't want to end up like him.", 1, 0, CREATURE, NPC);
 	npc->addDialog("Leave me please.");
 	npc->addDialog("Leave me here and try to scape.");
 	npc->addDialog("Oh, you're the prisoner, how did you end up here?");

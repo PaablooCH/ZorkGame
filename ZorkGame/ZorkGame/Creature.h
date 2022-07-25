@@ -15,7 +15,7 @@ class Creature :
 {
 public:
     Creature(string name, string description, int health, int attack, EntityType type, CreatureType creatureType);
-    void Damaged(int damage);
+    bool Damaged(int damage);
     void SetLoot(Item* item);
     Item* Loot();
     int GetHealth();

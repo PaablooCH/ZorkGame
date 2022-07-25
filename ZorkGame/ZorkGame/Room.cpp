@@ -30,7 +30,9 @@ bool Room::Examine(const string& object)
 			cout << "  Attack: " << creature->GetAttack() << endl;
 			if (creature->isDead()) {
 				Item* item = creature->GetLoot();
-				cout << "  Have: " << item->GetName() << " " << item->GetDescription() << endl;
+				if (item != nullptr) {
+					cout << "  Have: " << item->GetName() << " " << item->GetDescription() << endl;
+				}
 			}
 		}
 		return true;
@@ -50,7 +52,7 @@ void Room::Look(const string& direction)
 Exit* Room::FindExit(const string& direction)
 {
 	for (list<Entity*>::iterator it = contains.begin(); it != contains.end(); it++) {
-		if ((*it)->GetType() == EXIT) { //pilla la primera salida
+		if ((*it)->GetType() == EXIT) {
 			Exit* exit = ((Exit*)(*it));
 			if (exit->ExistExit(this, direction)) {
 				return ((Exit*)(*it));
@@ -60,12 +62,13 @@ Exit* Room::FindExit(const string& direction)
 	return nullptr;
 }
 
-Room* Room::Move(const string& direction)
+Exit* Room::Move(const string& direction)
 {
 	Exit* exit = FindExit(direction);
 	if (exit != nullptr) {
-		return exit->MoveNextRoom(this);
+		return exit;
 	}
+	cout << "You can not move to that direction." << endl;
 	return nullptr;
 }
 
@@ -82,6 +85,7 @@ Item* Room::Loot(const string& target)
 {
 	Creature* creature = FindCreature(target);
 	if (creature != nullptr) {
+		contains.remove(creature);
 		return creature->Loot();
 	}
 	return nullptr;
@@ -96,11 +100,11 @@ void Room::Talk(const string& npc)
 	}
 }
 
-void Room::Attack(const string& target, const int& damage)
+Creature* Room::Attack(const string& target)
 {
 	Creature* creature = FindCreature(target);
 	if (creature != nullptr) {
-		creature->Damaged(damage);
+		return creature;
 	}
 }
 
@@ -132,6 +136,5 @@ Entity* Room::FindEntity(const string& target)
 			return (*it);
 		}
 	}
-	cout << target << " is not in this room." << endl;
 	return nullptr;
 }
