@@ -32,15 +32,7 @@ With 3 args
 * ( c ) combine item1 item2 -> to combine items of the inventory (you only can combine armour or weapon with upgrades)
 
 ## Guide
-The game consists of 6 rooms in the following disposition (| or - are the exits ex.: J is conected by the north with M and M by the west with J):
-X X X X X
-X X T-G X
-X X | X X
-X --M A X
-X | | X X
-X J G X X
-X X X X X
-(ignore X)
+The game consists of 6 rooms in the following disposition (look Map.jpg):
 
 * J - Jail: you can find a Corpse to Loot, you will obtain a bandage
 * M - Main Hall: you can find a creature KnightGroup, if you kill and loot them you will obtain a bandage
