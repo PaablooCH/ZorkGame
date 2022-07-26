@@ -102,10 +102,7 @@ void Room::Talk(const string& npc)
 
 Creature* Room::Attack(const string& target)
 {
-	Creature* creature = FindCreature(target);
-	if (creature != nullptr) {
-		return creature;
-	}
+	return FindCreature(target);
 }
 
 Item* Room::FindItem(const string& object)

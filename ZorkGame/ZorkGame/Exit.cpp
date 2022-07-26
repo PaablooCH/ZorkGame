@@ -47,7 +47,7 @@ Room* Exit::MoveNextRoom(Room* room, Item* key)
 	if (source == room) {
 		return destination;
 	}
-	else if (destination == room) {
+	else {
 		return source;
 	}
 }
