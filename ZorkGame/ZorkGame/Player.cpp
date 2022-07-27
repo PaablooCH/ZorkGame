@@ -34,7 +34,6 @@ void Player::Move(string direction)
 			cout << location->GetName() << " " << location->GetDescription() << endl;
 		}
 	}
-	//Ir a la room y mirar si existe la direccion si lo hace devolver la habitación segun la exit
 }
 
 void Player::Take(string object)
@@ -47,10 +46,9 @@ void Player::Take(string object)
 	else {
 		cout << "You can not take " << object << "." << endl;
 	}
-	//Ir a la room y mirar si existe el objeto y devolverlo, eliminarlo de la room
 }
 
-void Player::Drop(string object) //TODO vigilar si hay que guardar el item del puntero antes de quitarlo de la lista
+void Player::Drop(string object)
 {
 	Item* item = FindItem(object);
 	if (item != nullptr) {
@@ -60,7 +58,6 @@ void Player::Drop(string object) //TODO vigilar si hay que guardar el item del p
 		return;
 	}
 	cout << "You do not possess " << object << "." << endl;
-	//Ir a la room y dejarle el objeto, eliminar el onjeto del personaje
 }
 
 bool Player::Attack(string target)
@@ -85,7 +82,6 @@ bool Player::Attack(string target)
 		}
 	}
 	return false;
-	//Ir a la room y bscar al enemigo, atacar
 }
 
 void Player::Equip(string object)
@@ -111,7 +107,6 @@ void Player::Equip(string object)
 	else {
 		cout << "You do not possess " << object << "." << endl;
 	}
-	//Ir al inventario y summar los stats
 }
 
 bool Player::Loot(string target)
@@ -125,7 +120,6 @@ bool Player::Loot(string target)
 		}
 	}
 	return false;
-	//Ir a la room y buscar el cadaver del enemigo
 }
 
 void Player::Talk(string npc)

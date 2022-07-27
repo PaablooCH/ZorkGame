@@ -4,6 +4,7 @@
 World::World()
 {
 	// Rooms
+
 	Room* jail = new Room("Jail", "Only a small candle allows you to see away from your fingers.", ROOM);
 	Room* mainHall = new Room("Main hall", "The main hall is a mess, the walls and floor are painted red, you dont know what it is, but you don't want to know it neither.", ROOM);
 	Room* throne = new Room("Throne", "Here is were the king should be.", ROOM);
@@ -12,6 +13,7 @@ World::World()
 	Room* goldenRoom = new Room("GoldenRoom", "Everything is made of gold.", ROOM);
 
 	// Exits
+
 	Exit* ex1 = new Exit("Stairs", "These stairs connect the jail with the main hall.", "north", "west", jail, mainHall, EXIT);
 	Exit* ex2 = new Exit("GreatDoor", "This door connect the main hall with the throne.", "north", "south", mainHall, throne, EXIT);
 	Exit* ex3 = new Exit("Exit", "This door connect the main hall with the garden.", "south", "north", mainHall, garden, EXIT);
@@ -30,6 +32,7 @@ World::World()
 	goldenRoom->InsertEntity(ex5);
 
 	// Creatures
+
 	Creature* knightGroup = new Creature("KnightGroup", "It's a group of knights, some of them look scared.", 7, 4, CREATURE, ENEMY);
 	Creature* corpse = new Creature("Corpse", "There is a human corpse leaning against the wall. Somebody has killed him.", 0, 0, CREATURE, ENEMY);
 	Creature* wizard = new Creature("Wizard", "Magic wizard protects the garden.", 10, 5, CREATURE, ENEMY);
@@ -75,10 +78,12 @@ World::World()
 	finalBoss->SetLoot(medal);
 
 	// Player
+
 	player = new Player("Hero", "You are an awesome adventurer!", 25, 3, 0, jail, CREATURE, PLAYER);
+	cout << jail->GetName() << " " << jail->GetDescription() << endl;
+
 	gameOver = false;
 	win = false;
-	cout << jail->GetName() << " " << jail->GetDescription() << endl;
 }
 
 World::~World()
